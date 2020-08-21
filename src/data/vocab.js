@@ -29,7 +29,7 @@ const vocab = [
     definition:
       'a directed graph with no cycles, that is, every edge is directed from earlier to later in a sequence',
   },
-  { term: 'DAG', definition: "acronym for 'directed acyclic graph" },
+  { term: 'DAG', definition: "acronym for 'directed acyclic graph'" },
   {
     term: 'adjacency matrix',
     definition:

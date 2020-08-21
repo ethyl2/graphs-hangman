@@ -12,8 +12,10 @@ export default function Game() {
 
   function getNewTerm() {
     const newIndex = Math.floor(Math.random() * (vocab.length - 1));
-    console.log(newIndex);
     setCurrentTerm(vocab[newIndex].term);
+    setCurrentTermLetters(new Set(vocab[newIndex].term));
+    setGuessedLetters(new Set());
+    setRejectedLetters([]);
   }
 
   function displayTerm(term) {
@@ -21,7 +23,9 @@ export default function Game() {
     let currentLetter;
     for (let i = 0; i < term.length; i++) {
       currentLetter = term.charAt(i);
-      if (currentLetter !== ' ') {
+      if (guessedLetters.has(currentLetter)) {
+        termLetters += currentLetter + ' ';
+      } else if (currentLetter !== ' ') {
         //console.log(term.charAt(i));
         termLetters += '_ ';
       } else termLetters += '  *  ';
@@ -31,8 +35,6 @@ export default function Game() {
 
   function handleLetterGuessChange(e) {
     setCurrentLetterGuess(e.target.value);
-    //console.log(e.target.value);
-    console.log(currentLetterGuess);
   }
 
   function handleSubmit(e) {
@@ -40,9 +42,10 @@ export default function Game() {
     let guessedLettersCopy = new Set(guessedLetters);
     guessedLettersCopy.add(currentLetterGuess);
     setGuessedLetters(guessedLettersCopy);
-    console.log(guessedLetters);
     setCurrentLetterGuess('');
-    if (currentTermLetters.has(currentLetterGuess)) {
+    if (guessedLetters.has(currentLetterGuess)) {
+      console.log('Already guessed that letter. Pick again!');
+    } else if (currentTermLetters.has(currentLetterGuess)) {
       console.log('Guessed a letter correctly!');
     } else {
       console.log('Oh no! That letter is not in the word');
@@ -52,7 +55,7 @@ export default function Game() {
 
   return (
     <section>
-      <h2>Game goes here</h2>
+      <h2>Guess the Term</h2>
       <h3>{displayTerm(currentTerm)}</h3>
       <form onSubmit={handleSubmit}>
         <input
@@ -61,13 +64,14 @@ export default function Game() {
           onChange={handleLetterGuessChange}
         />
         <button type="submit">Check Letter</button>
-        <h4>Rejected Letters</h4>
+        {rejectedLetters.length > 0 && <h4>Rejected Letters</h4>}
         <p>
           {rejectedLetters.map((letter) => {
             return `${letter} `;
           })}
         </p>
       </form>
+      <button onClick={getNewTerm}>Get New Term</button>
     </section>
   );
 }

@@ -20,3 +20,17 @@
 h3 {
   font-size: 5em;
 }
+
+.game {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.left {
+  width: 65%;
+  background: rgba(255, 233, 22, 0.5);
+}
+
+.right {
+  width: 30%;
+}

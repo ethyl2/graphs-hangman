@@ -74,7 +74,8 @@ button {
   padding: 0.5em;
   width: 10em;
   font-size: 1.2em;
-  margin-bottom: 0.5em;
+  margin: 0.5em auto;
+  display: block;
 }
 
 .new-button {

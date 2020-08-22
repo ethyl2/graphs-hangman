@@ -38,6 +38,7 @@ export default function Game() {
   const [currentDefinition, setCurrentDefinition] = useState(
     vocab[8].definition
   );
+  const [currentTermImage, setCurrentTermImage] = useState(vocab[8].imageSrc);
 
   const [guessedLetters, setGuessedLetters] = useState(new Set());
   const [rejectedLetters, setRejectedLetters] = useState([]);
@@ -60,8 +61,10 @@ export default function Game() {
     setNumCorrectGuesses(0);
     setNumIncorrectGuesses(0);
     setCurrentDefinition(vocab[newIndex].definition);
+    setCurrentTermImage(vocab[newIndex].imageSrc);
     setHasGuessedTerm(false);
     setMessage('Choose a letter');
+    setShowDefinition(false);
   }
 
   function convertTermToSet(term) {
@@ -144,6 +147,7 @@ export default function Game() {
       setHasGuessedTerm(true);
       setMessage('You won!');
       setGuessedLetters(new Set(currentTerm));
+      setTermGuess('');
     } else {
       setTermGuess('');
       setMessage('Try again');
@@ -191,6 +195,9 @@ export default function Game() {
             <div>
               <h2>{currentTerm}</h2>
               {showDefinition && <p>= {currentDefinition}</p>}
+              {showDefinition && (
+                <img src={currentTermImage} alt="representation of term" />
+              )}
               <button className="definition-button" onClick={toggleDefinition}>
                 {showDefinition ? 'Hide Definition' : 'Get Definition'}
               </button>

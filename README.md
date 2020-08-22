@@ -1,4 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 'Scary' Graph Vocabulary Game
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6dbbe423-2d1a-4295-9e68-ed059bb45d37/deploy-status)](https://app.netlify.com/sites/graphs-vocab/deploys)
+
+https://graphs-vocab.netlify.app/
+
+I built this app as a tool to help review computer science graph terms, in a fun way.
+
+I used a 'scary' theme, because the graphs unit at Lambda School has a reputation for being the toughest unit of Computer Science.
+
+Users guess the letters of a term, and then users can see if they know what the term means, before revealing its definition and example.
+
+## How to Contribute
+
+If you think of other computer science graph vocabulary terms that would be a good addition to this app, please add them to the src/data/vocab file, include an image to illustrate it (that is free to use) in the src/images directory, and submit a pull request.
+
+---
+
+## How to run this app locally:
+
+1. Fork and clone this repository.
+2. In terminal, run `npm i`.
+3. In terminal, run `npm start`.
+4. Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+---
 
 ## Available Scripts
 

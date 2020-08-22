@@ -31,14 +31,14 @@ export default function Game() {
     skeleton1,
   ];
 
-  const [currentTerm, setCurrentTerm] = useState(vocab[8].term.toLowerCase());
+  const [currentTerm, setCurrentTerm] = useState(vocab[1].term.toLowerCase());
   const [currentTermLetters, setCurrentTermLetters] = useState(
-    convertTermToSet(vocab[8].term.toLowerCase())
+    convertTermToSet(vocab[1].term.toLowerCase())
   );
   const [currentDefinition, setCurrentDefinition] = useState(
-    vocab[8].definition
+    vocab[1].definition
   );
-  const [currentTermImage, setCurrentTermImage] = useState(vocab[8].imageSrc);
+  const [currentTermImage, setCurrentTermImage] = useState(vocab[1].imageSrc);
 
   const [guessedLetters, setGuessedLetters] = useState(new Set());
   const [rejectedLetters, setRejectedLetters] = useState([]);
@@ -182,12 +182,16 @@ export default function Game() {
               </form>
             </>
           )}
-          {rejectedLetters.length > 0 && <h4>Rejected Letters</h4>}
-          <p>
-            {rejectedLetters.map((letter) => {
-              return `${letter} `;
-            })}
-          </p>
+          {rejectedLetters.length > 0 && !hasGuessedTerm && (
+            <h4>Rejected Letters</h4>
+          )}
+          {!hasGuessedTerm && (
+            <p>
+              {rejectedLetters.map((letter) => {
+                return `${letter} `;
+              })}
+            </p>
+          )}
           <button className="new-button" onClick={getNewTerm}>
             Get New Term
           </button>

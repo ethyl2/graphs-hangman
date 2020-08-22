@@ -49,6 +49,8 @@ export default function Game() {
   const [message, setMessage] = useState('Choose a letter');
   const [showDefinition, setShowDefinition] = useState(false);
 
+  const [termGuess, setTermGuess] = useState('');
+
   function getNewTerm() {
     const newIndex = Math.floor(Math.random() * (vocab.length - 1));
     setCurrentTerm(vocab[newIndex].term.toLowerCase());
@@ -135,30 +137,56 @@ export default function Game() {
   function toggleDefinition() {
     setShowDefinition(!showDefinition);
   }
+
+  function handleTermSubmit(e) {
+    e.preventDefault();
+    if (termGuess === currentTerm) {
+      setHasGuessedTerm(true);
+      setMessage('You won!');
+      setGuessedLetters(new Set(currentTerm));
+    } else {
+      setTermGuess('');
+      setMessage('Try again');
+    }
+  }
+
+  function handleTermGuessChange(e) {
+    setTermGuess(e.target.value);
+  }
+
   return (
     <section>
       <h2>Guess the 'scary' graphs term before the skeleton is complete!</h2>
       <div className="game">
         <div className="left">
           <h3>{displayTerm(currentTerm)}</h3>
-          <h4>{message}</h4>
+          <h2>{message}</h2>
           {!hasGuessedTerm && (
-            <form onSubmit={handleSubmit}>
-              <input
-                name="currentLetterGuess"
-                value={currentLetterGuess}
-                onChange={handleLetterGuessChange}
-              />
-              <button type="submit">Check Letter</button>
-              {rejectedLetters.length > 0 && <h4>Rejected Letters</h4>}
-              <p>
-                {rejectedLetters.map((letter) => {
-                  return `${letter} `;
-                })}
-              </p>
-            </form>
+            <>
+              <form onSubmit={handleSubmit}>
+                <input
+                  className="letter-input"
+                  name="currentLetterGuess"
+                  value={currentLetterGuess}
+                  onChange={handleLetterGuessChange}
+                />
+                <button type="submit">Check Letter</button>
+              </form>
+              <form onSubmit={handleTermSubmit}>
+                <input value={termGuess} onChange={handleTermGuessChange} />
+                <button type="submit">Guess Term</button>
+              </form>
+            </>
           )}
-          <button onClick={getNewTerm}>Get New Term</button>
+          {rejectedLetters.length > 0 && <h4>Rejected Letters</h4>}
+          <p>
+            {rejectedLetters.map((letter) => {
+              return `${letter} `;
+            })}
+          </p>
+          <button className="new-button" onClick={getNewTerm}>
+            Get New Term
+          </button>
           {hasGuessedTerm && (
             <div>
               <h2>{currentTerm}</h2>

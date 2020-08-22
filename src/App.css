@@ -13,12 +13,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(8px + 2vmin);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+h2 {
+  margin-bottom: 1em;
 }
 
 h3 {
@@ -28,6 +28,11 @@ h3 {
 
 h4 {
   font-size: 1.5em;
+  margin-bottom: 0;
+}
+
+p {
+  margin-top: 0;
 }
 
 .game {
@@ -54,11 +59,12 @@ h4 {
 }
 
 button {
-  font-family: 'Space Mono', monospace;
+  font-family: sans-serif;
   font-weight: bold;
   font-size: 1em;
   border-radius: 3px;
   border: 1px solid black;
+  padding: 0.5em;
 }
 
 .definition-button {
@@ -68,13 +74,31 @@ button {
   padding: 0.5em;
   width: 10em;
   font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.new-button {
+  background: #454544;
+  color: white;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.25em;
 }
 
 input {
-  font-size: 2.5em;
-  width: 1em;
-  margin-right: 0.5em;
-  padding-left: 0.25em;
+  font-size: 1.5em;
   border-radius: 3px;
   border: 1px solid black;
+  padding: 0.25em;
+  margin-right: 0.25em;
+}
+
+.letter-input {
+  width: 1em;
+  font-size: 2.5em;
+  padding: 0 0 0 0.25em;
 }

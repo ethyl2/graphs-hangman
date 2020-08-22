@@ -47,6 +47,7 @@ export default function Game() {
   const [hasGuessedTerm, setHasGuessedTerm] = useState(false);
 
   const [message, setMessage] = useState('Choose a letter');
+  const [showDefinition, setShowDefinition] = useState(false);
 
   function getNewTerm() {
     const newIndex = Math.floor(Math.random() * (vocab.length - 1));
@@ -131,6 +132,9 @@ export default function Game() {
     }
   }
 
+  function toggleDefinition() {
+    setShowDefinition(!showDefinition);
+  }
   return (
     <section>
       <h2>Guess the 'scary' graphs term before the skeleton is complete!</h2>
@@ -158,7 +162,10 @@ export default function Game() {
           {hasGuessedTerm && (
             <div>
               <h2>{currentTerm}</h2>
-              <p>= {currentDefinition}</p>
+              {showDefinition && <p>= {currentDefinition}</p>}
+              <button className="definition-button" onClick={toggleDefinition}>
+                {showDefinition ? 'Hide Definition' : 'Get Definition'}
+              </button>
             </div>
           )}
         </div>

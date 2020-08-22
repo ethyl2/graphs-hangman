@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Space Mono', monospace;
 }
 
 .App-header {
@@ -18,19 +21,46 @@
 }
 
 h3 {
-  font-size: 5em;
+  font-size: 3em;
+  font-family: 'Space Mono', monospace;
+}
+
+h4 {
+  font-size: 1.5em;
 }
 
 .game {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  width: 95vw;
 }
 
 .left {
   width: 65%;
-  background: rgba(255, 233, 22, 0.5);
+  background: #ffb347;
+  border: 3px solid orange;
 }
 
 .right {
   width: 30%;
+  background: black;
+}
+
+.right img {
+  max-width: 100%;
+}
+
+button {
+  font-family: 'Space Mono', monospace;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+input {
+  font-size: 2.5em;
+  width: 1em;
+  margin-right: 0.5em;
+  padding-left: 0.25em;
 }

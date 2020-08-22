@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import vocab from '../data/vocab';
+import skeleton0 from '../images/skeleton0.png';
 import skeleton1 from '../images/skeleton1.png';
 import skeleton2 from '../images/skeleton2.png';
 import skeleton3 from '../images/skeleton3.png';
@@ -15,6 +16,7 @@ import skeleton12 from '../images/skeleton12.png';
 
 export default function Game() {
   const skeletons = [
+    skeleton0,
     skeleton12,
     skeleton11,
     skeleton10,
@@ -41,7 +43,7 @@ export default function Game() {
   const [rejectedLetters, setRejectedLetters] = useState([]);
   const [currentLetterGuess, setCurrentLetterGuess] = useState('');
   const [numCorrectGuesses, setNumCorrectGuesses] = useState(0);
-  const [numIncorrectGuesses, setNumIncorrectGuesses] = useState(0);
+  const [numIncorrectGuesses, setNumIncorrectGuesses] = useState(-1);
   const [hasGuessedTerm, setHasGuessedTerm] = useState(false);
 
   const [message, setMessage] = useState('Choose a letter');
@@ -119,7 +121,7 @@ export default function Game() {
         setNumIncorrectGuesses(
           (prevNumIncorrectGuesses) => prevNumIncorrectGuesses + 1
         );
-        if (numIncorrectGuesses === skeletons.length - 2) {
+        if (numIncorrectGuesses === skeletons.length - 3) {
           setMessage("Boo! You didn't guess the term in time.");
           setHasGuessedTerm(true);
           setGuessedLetters(new Set(currentTerm));
@@ -161,7 +163,7 @@ export default function Game() {
           )}
         </div>
         <div className="right">
-          <img src={skeletons[numIncorrectGuesses]} alt="skeleton" />
+          <img src={skeletons[numIncorrectGuesses + 1]} alt="skeleton" />
         </div>
       </div>
     </section>
